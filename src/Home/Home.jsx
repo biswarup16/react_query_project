@@ -16,7 +16,7 @@ const Home = () => {
     const { id } = useParams()
     const pageId = parseInt(id)
     const history = useNavigate()
-    const { data, isLoading, error } = useQuery(["post",pageId], () => fetchPosts(pageId))
+    const { data, isLoading, error } = useQuery(["posts",pageId], () => fetchPosts(pageId))
     console.log(data)
     return (
         <>
@@ -35,6 +35,7 @@ const Home = () => {
                         }}
                         >Previous</p>
                     </div>
+                    <p className='text-black'>Current page : {pageId}</p>
                     <div>
                         <p className='bg-green-500 shadow-md cursor-pointer px-7 py-2 rounded-lg' 
                         onClick={()=>{
