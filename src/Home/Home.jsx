@@ -2,10 +2,11 @@ import React from 'react'
 import { useQuery } from "react-query"
 import { useParams, useNavigate  } from "react-router-dom"
 import axios from "axios"
+import AddNewPost from './components/AddNewPost'
 
 const fetchPosts = async (id) => {
     try {
-        const { data } = await axios.get(`https://gorest.co.in/public/v2/posts?page=${id}`)
+        const { data } = await axios.get(`https://gorest.co.in//public/v2/users/100/posts?page=${id}`)
         return data;
     } catch (error) {
         throw Error("unable to fetch Posts")
@@ -28,7 +29,8 @@ const Home = () => {
                 </svg>
                 <span class="sr-only">Loading...</span>
             </div> : <>
-                <div className="container py-5 mx-auto flex justify-between items-center text-white text-xl">
+            <AddNewPost />
+                <div className="container max-w-5xl py-5 mx-auto flex justify-between items-center text-white text-xl">
                     <div>
                         <p className='bg-red-500 px-7 shadow-md py-2 rounded-lg cursor-pointer' onClick={()=>{
                             history(`/${pageId - 1}`)
@@ -47,7 +49,7 @@ const Home = () => {
 
                 {data.map((post) => {
                     return <>
-                        <div key={post.id} className='container p-5 shadow-md mx-auto rounded-lg mt-10'>
+                        <div key={post.id} className='max-w-5xl container p-5 shadow-md mx-auto rounded-lg mt-10'>
                             <div className='flex justify-between items-center'>
                                 <span>User Id : {post.user_id}</span>
                                 <span>Post Id : {post.id}</span>
